@@ -81,26 +81,3 @@ class ActionRecognitionModel(nn.Module):
         probs = torch.softmax(logits, dim=1)
         
         return probs
-    
-    def get_attention_weights(self, x, mask=None):
-        """
-        Get attention weights from transformer
-        Args:
-            x (torch.Tensor): Input tensor of shape [batch_size, seq_len, channels, height, width]
-            mask (torch.Tensor, optional): Mask for transformer of shape [batch_size, seq_len]
-        Returns:
-            torch.Tensor: Attention weights of shape [batch_size, seq_len, seq_len]
-        """
-        batch_size, seq_len, channels, height, width = x.size()
-        
-        # Reshape input for CNN
-        x = x.view(-1, channels, height, width)
-        
-        # Extract frame embeddings
-        frame_embeddings = self.cnn(x)
-        frame_embeddings = frame_embeddings.view(batch_size, seq_len, -1)
-        
-        # Get attention weights from transformer
-        attention_weights = self.transformer.get_attention_weights(frame_embeddings, mask)
-        
-        return attention_weights
