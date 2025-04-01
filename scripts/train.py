@@ -5,6 +5,7 @@ from torch.utils.data import DataLoader
 from pathlib import Path
 import wandb  # Optional: for logging
 from tqdm import tqdm
+from config.config import Config
 
 from models.action_recognition_model import ActionRecognitionModel
 from utils.preprocess import UCF101Dataset, create_data_loaders

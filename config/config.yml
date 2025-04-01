@@ -2,5 +2,19 @@
 model:
   name: "ActionRecognitionModel"
   num_frames: 16
-  frame_size: 224
   num_classes: 101
+
+# Training Configuration
+training:
+  batch_size: 32
+  learning_rate: 1e-4
+  num_epochs: 10
+  device: "cuda" if torch.cuda.is_available() else "cpu"
+
+# Data Configuration
+data:
+  root_dir: "data/ucf-101" # add this later
+
+logging:
+  wandb: true
+  project_name: "UCF-101 Action Recognition"
