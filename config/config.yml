@@ -1,0 +1,6 @@
+# Model Configuration
+model:
+  name: "ActionRecognitionModel"
+  num_frames: 16
+  frame_size: 224
+  num_classes: 101
